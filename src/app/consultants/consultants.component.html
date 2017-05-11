@@ -1,0 +1,33 @@
+<nav class="navbar navbar-light bg-faded">
+  <div class="container">
+    <a class="navbar-brand" href="#">test</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div [style.margin-top.px]="10" class="row">
+    <h3>Add new consultant</h3>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" #name>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" #age>
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input type="text" class="form-control" id="role" #role>
+      </div>
+      <button type="button" (click)="add(name.value, age.value, role.value)" class="btn btn-primary">Add consultant</button>
+    </form>
+  </div>
+
+  <div [style.margin-top.px]="10" class="row">
+    <h3>Consultants</h3>
+    <div [style.margin-right.px]="10" class="card card-block col-md-3" *ngFor="let consultant of consultants">
+      <h4 class="card-title">{{consultant.name}}  {{consultant.age}} {{consultant.role}}</h4>
+    </div>
+  </div>
+</div>
