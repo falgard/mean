@@ -23,11 +23,36 @@ export class ConsultantsService {
 			.catch(this.handleError);
 	}
 
+	getConsultant(id: string): Promise<Consultant> {
+		const url = `${this.apiUrl}/${id}`;
+		return this.http.get(url)
+			.toPromise()
+			.then(response => response.json() as Consultant)
+			.catch(this.handleError);
+	}
+
+	update(consultant: Consultant): Promise<Consultant> {
+		const url = `${this.apiUrl}/${consultant.id}`;
+		return this.http
+			.put(url, JSON.stringify(consultant), {headers: this.headers})
+			.toPromise()
+			.then(() => consultant)
+			.catch(this.handleError);
+	}
+
 	create(name: string, age: number, role: string): Promise<Consultant> {
 		return this.http
 			.post(this.apiUrl, JSON.stringify({name: name, age: age, role: role}), {headers: this.headers})
 			.toPromise()
-			.then(res => res.json().data as Consultant)
+			.then(res => res.json() as Consultant)
+			.catch(this.handleError);
+	}
+
+	delete(id: string): Promise<void> {
+		const url = `${this.apiUrl}/${id}`;
+		return this.http.delete(url, {headers: this.headers})
+			.toPromise()
+			.then(() => null)
 			.catch(this.handleError);
 	}
 

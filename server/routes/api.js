@@ -12,29 +12,41 @@ const consultantSchema = new mongoose.Schema({
   role: String
 });
 
+const skillSchema = new mongoose.Schema({
+  name: String,
+  type: String
+});
+
 // create mongoose model
 const Consultant = mongoose.model('Consultant', consultantSchema);
-
-
+const Skill = mongoose.model('Skill', skillSchema);
 
 /* GET api listing. */
 router.get('/', (req, res) => {
   res.send('api works');
 });
 
+router.get('/skills', (req, res) => {
+    Skill.find({}, (err, skills) => {
+        if (err) res.status(500).send(error)
+
+        res.status(200).json(skills);
+    });
+});
 
 /* GET all consultants. */
 router.get('/consultants', (req, res) => {
     Consultant.find({}, (err, consultants) => {
         if (err) res.status(500).send(error)
 
-        res.status(200).json(consultants);
+        res.status(200).json(consultant);
     });
 });
 
 /* GET one consultant. */
 router.get('/consultants/:id', (req, res) => {
-    Consultant.findById(req.param.id, (err, consultants) => {
+    var _id = mongoose.Types.ObjectId(req.params.id);
+    Consultant.findById(_id, (err, consultants) => {
         if (err) res.status(500).send(error)
 
         res.status(200).json(consultants);

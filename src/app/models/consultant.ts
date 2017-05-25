@@ -1,5 +1,5 @@
 export class Consultant {
-	id: number;
+	id: string;
 	name: string;
 	age: number;
 	role: string;
