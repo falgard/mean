@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsultantsService } from '../consultants.service';
-
 import { Consultant } from '../models/consultant';
 
 @Component({
@@ -10,12 +9,7 @@ import { Consultant } from '../models/consultant';
 })
 export class ConsultantsComponent implements OnInit {
 
-	consultants: Consultant[] = [{ id: 0, name: 'M', age: 1, role: 'b' }];
-
-	MOCKS: Consultant[] = [
-		{ id: 0, name: 'M', age: 1, role: 'b' },
-		{ id: 1, name: 'N', age: 2, role: 'c' }
-	];
+  consultants: Consultant[];
 
   constructor(private consultantsService: ConsultantsService) { }
 
@@ -27,7 +21,6 @@ export class ConsultantsComponent implements OnInit {
 		this.consultantsService.getConsultants()
 			.then(consultants => {
 				this.consultants = consultants;
-				console.log(consultants);
 			});
 	}
 
