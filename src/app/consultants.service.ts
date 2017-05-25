@@ -45,7 +45,7 @@ export class ConsultantsService {
 		return this.http
 			.post(this.apiUrl, JSON.stringify({name: name, age: age, role: role, skills: skills}), {headers: this.headers})
 			.toPromise()
-			.then(res => res.json() as Consultant)
+			.then(res => res.json().data as Consultant)
 			.catch(this.handleError);
 	}
 
