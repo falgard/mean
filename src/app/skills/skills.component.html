@@ -1,0 +1,13 @@
+<nav class="navbar navbar-light bg-faded">
+  <div class="container">
+    <a class="navbar-brand" href="#">Skills</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row" *ngFor="let skill of skills">
+    <div class="card card-block col-md-3">
+      <h4 class="card-title">{{ skill.name }} ({{ skill.type}})</h4>
+    </div>
+  </div>
+</div>
