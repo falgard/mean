@@ -5,12 +5,12 @@
 </nav>
 
 <div class="container">
-  <div [style.margin-top.px]="10" class="row">
+  <div class="row">
     <h3>Add new consultant</h3>
     <form class="form-inline">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" #name>
+        <input type="text" class="form-control" id="name" required #name>
       </div>
       <div class="form-group">
         <label for="age">Age</label>
@@ -20,14 +20,24 @@
         <label for="role">Role</label>
         <input type="text" class="form-control" id="role" #role>
       </div>
+
+      <div class="form-group">
+        <label for="skills">Skills</label>
+        <select class="form-control" id="skills" required>
+          <option *ngFor="let skill of skills" [value]="skill.name">{{skill.name}} ({{skill.type}})</option>
+        </select>
+      </div>
+
+
       <button type="button" (click)="add(name.value, age.value, role.value)" class="btn btn-primary">Add consultant</button>
     </form>
   </div>
 
-  <div [style.margin-top.px]="10" class="row">
+  <div class="row">
     <h3>Consultants</h3>
-    <div [style.margin-right.px]="10" class="card card-block" *ngFor="let consultant of consultants">
+    <div (click)="gotoDetail()" class="card card-block" *ngFor="let consultant of consultants">
       <h4 class="card-title">{{consultant.name}}  {{consultant.age}} {{consultant.role}}</h4>
     </div>
   </div>
+
 </div>

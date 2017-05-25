@@ -9,7 +9,8 @@ mongoose.connect(dbHost);
 const consultantSchema = new mongoose.Schema({
   name: String,
   age: Number,
-  role: String
+  role: String,
+  skills: [String]
 });
 
 const skillSchema = new mongoose.Schema({
@@ -39,7 +40,7 @@ router.get('/consultants', (req, res) => {
     Consultant.find({}, (err, consultants) => {
         if (err) res.status(500).send(error)
 
-        res.status(200).json(consultant);
+        res.status(200).json(consultants);
     });
 });
 
@@ -58,7 +59,8 @@ router.post('/consultants', (req, res) => {
     let consultant = new Consultant({
         name: req.body.name,
         age: req.body.age,
-        role: req.body.role
+        role: req.body.role,
+        skills: req.body.skills
     });
 
     consultant.save(error => {

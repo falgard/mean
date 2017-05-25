@@ -3,6 +3,7 @@ import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Consultant } from './models/consultant';
+import { Skill } from './models/skill';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -40,9 +41,9 @@ export class ConsultantsService {
 			.catch(this.handleError);
 	}
 
-	create(name: string, age: number, role: string): Promise<Consultant> {
+	create(name: string, age: number, role: string, skills: Skill[]): Promise<Consultant> {
 		return this.http
-			.post(this.apiUrl, JSON.stringify({name: name, age: age, role: role}), {headers: this.headers})
+			.post(this.apiUrl, JSON.stringify({name: name, age: age, role: role, skills: skills}), {headers: this.headers})
 			.toPromise()
 			.then(res => res.json() as Consultant)
 			.catch(this.handleError);
