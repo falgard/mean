@@ -1,0 +1,12 @@
+PUT _template/base
+{
+	"template" : "*", 
+	"order" : 1, 
+	"mappings": {
+		"_default_" : {
+			"_all": {
+				"enabled": false
+			}
+		}
+	}	
+}

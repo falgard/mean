@@ -1,0 +1,36 @@
+PUT consultants-test/consult/592750bf989e47316f66e069
+{
+    "name" : "mike",
+    "age" : 30,
+    "role" : "fullstack",
+    "skills" : [ 
+        "angular2", 
+        "mongodb", 
+        "elastic"
+    ]
+}
+
+PUT consultants-test/consultant/123
+{
+    "name" : "mike the bike",
+    "age" : 25,
+    "role" : "backend",
+    "skills" : [ 
+        "java", 
+        "csharp", 
+        "elastic"
+    ]
+}
+
+
+PUT consultants-test/consultant/456
+{
+    "name" : "qwerty",
+    "age" : 10,
+    "role" : "frontend",
+    "skills" : [ 
+        "react",
+        "angular", 
+        "vuejs"
+    ]
+}

@@ -1,0 +1,12 @@
+GET consultants-test/_search
+{
+  "suggest" : {
+    "my_suggestions" : {
+      "prefix" : "ang",
+      "completion" : {
+        "field" : "skills.suggestion",
+        "size" : 10
+      } 
+    }
+  }
+}

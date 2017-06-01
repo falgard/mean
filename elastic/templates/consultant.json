@@ -1,0 +1,50 @@
+PUT _template/consultant
+{
+	"template" : "consultant*", 
+	"order" : 2, 
+	"mappings": {
+    	"consultant": {
+	        "properties": {
+	          "age": {
+	            "type": "integer"
+	          },
+	          "name": {
+	            "type": "text",
+	            "fields": {
+	              "keyword": {
+	                "type": "keyword",
+	                "ignore_above": 256
+	              },
+	              "suggestion" : {
+          			"type": "completion"
+				  }
+	            }
+	          },
+	          "role": {
+	            "type": "text",
+	            "fields": {
+	              "keyword": {
+	                "type": "keyword",
+	                "ignore_above": 256
+	              },
+  	              "suggestion" : {
+          			"type": "completion"
+				  }
+	            }
+	          },
+	          "skills": {
+	            "type": "text",
+	            "fields": {
+	              "keyword": {
+	                "type": "keyword",
+	                "ignore_above": 256
+	              },
+	              "suggestion" : {
+          			"type": "completion"
+				  }
+	            }
+	          }
+	        }
+	    }
+    }
+}
