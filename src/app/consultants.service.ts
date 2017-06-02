@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Rx';
 import { Consultant } from './models/consultant';
 import { Skill } from './models/skill';
 
+import { ElasticSearchService } from './elasticsearch.service';
+
 import 'rxjs/add/operator/toPromise';
 
 
@@ -14,7 +16,9 @@ export class ConsultantsService {
 	private apiUrl = 'http://localhost:3000/api/consultants';
 	private headers = new Headers({'Content-Type': 'application/json'});
 
-	constructor(private http: Http) { }
+	constructor(
+		private http: Http,
+		private es: ElasticSearchService) { }
 
 	getConsultants(): Promise<Consultant[]> {
 		return this.http
@@ -25,12 +29,19 @@ export class ConsultantsService {
 	}
 
 	getConsultant(id: string): Promise<Consultant> {
-		const url = `${this.apiUrl}/${id}`;
-		return this.http.get(url)
-			.toPromise()
-			.then(response => response.json() as Consultant)
+		return this.es
+			.get(id)
+			.then(response => this.extractConsultant(response))
 			.catch(this.handleError);
 	}
+
+	// getConsultant(id: string): Promise<Consultant> {
+	// 	const url = `${this.apiUrl}/${id}`;
+	// 	return this.http.get(url)
+	// 		.toPromise()
+	// 		.then(response => response.json() as Consultant)
+	// 		.catch(this.handleError);
+	// }
 
 	update(consultant: Consultant): Promise<Consultant> {
 		const url = `${this.apiUrl}/${consultant.id}`;
@@ -55,6 +66,12 @@ export class ConsultantsService {
 			.toPromise()
 			.then(() => null)
 			.catch(this.handleError);
+	}
+
+	private extractConsultant(json: any): any {
+		var result = json._source as Consultant;
+		result.id = json._id;
+		return result; 
 	}
 
 	private handleError(error: any): Promise<any> {

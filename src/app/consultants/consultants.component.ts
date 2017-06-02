@@ -36,7 +36,7 @@ export class ConsultantsComponent implements OnInit {
 	}
 
 	gotoDetail(): void {
-		var _id = "591382db2a7124119e56039e";
+		var _id = "592750bf989e47316f66e069";
 		this.router.navigate(['/detail', _id]);
 	}
 

@@ -9,6 +9,7 @@ import { PostsComponent } from './posts/posts.component';
 import { ConsultantsComponent } from './consultants/consultants.component';
 import { SkillsComponent } from './skills/skills.component';
 
+import { ElasticSearchService } from './elasticsearch.service';
 import { PostsService } from './posts.service';
 import { ConsultantsService } from './consultants.service';
 import { SkillsService } from './skills.service';
@@ -28,7 +29,7 @@ import { ConsultantDetailComponent } from './consultant-detail/consultant-detail
     HttpModule,
     AppRoutingModule
   ],
-  providers: [PostsService, ConsultantsService, SkillsService],
+  providers: [ElasticSearchService, PostsService, ConsultantsService, SkillsService],
   bootstrap: [AppComponent]
 })
 
