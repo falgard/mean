@@ -22,8 +22,8 @@ export class ElasticSearchService {
 
     get(id: string): any {
 		return this._client.get({
-		  index: 'consultants-test',
-		  type: 'consultant',
+		  index: this._index,
+		  type: this._type,
 		  id: id
 		})
     }
@@ -32,8 +32,7 @@ export class ElasticSearchService {
         if (value) {
             console.log(value)
             return this._client.search({
-                index: 'blog',
-                q: `title:${value}`
+                index: this._index //, q: `title:${value}`
             })
         } else {
             return Promise.resolve({})

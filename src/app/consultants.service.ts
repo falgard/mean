@@ -21,12 +21,19 @@ export class ConsultantsService {
 		private es: ElasticSearchService) { }
 
 	getConsultants(): Promise<Consultant[]> {
-		return this.http
-			.get(this.apiUrl, {headers: this.headers})
-			.toPromise()
-			.then(res => res.json() as Consultant[])
+		return this.es
+			.search({})
+			.then(response => response._hits.map(this.extractConsultant))
 			.catch(this.handleError);
 	}
+
+	// getConsultants(): Promise<Consultant[]> {
+	// 	return this.http
+	// 		.get(this.apiUrl, {headers: this.headers})
+	// 		.toPromise()
+	// 		.then(res => res.json() as Consultant[])
+	// 		.catch(this.handleError);
+	// }	
 
 	getConsultant(id: string): Promise<Consultant> {
 		return this.es
