@@ -22,18 +22,18 @@ export class ConsultantsService {
 
 	getConsultants(): Promise<Consultant[]> {
 		return this.es
-			.search({})
-			.then(response => response._hits.map(this.extractConsultant))
-			.catch(this.handleError);
+		.search({})
+		.then(response => this.getHits(response))
+		.catch(this.handleError);	
 	}
 
-	// getConsultants(): Promise<Consultant[]> {
-	// 	return this.http
-	// 		.get(this.apiUrl, {headers: this.headers})
-	// 		.toPromise()
-	// 		.then(res => res.json() as Consultant[])
-	// 		.catch(this.handleError);
-	// }	
+	getConsultants2(): Promise<Consultant[]> {
+		return this.http
+			.get(this.apiUrl, {headers: this.headers})
+			.toPromise()
+			.then(res => res.json() as Consultant[])
+			.catch(this.handleError);
+	}
 
 	getConsultant(id: string): Promise<Consultant> {
 		return this.es
@@ -42,13 +42,13 @@ export class ConsultantsService {
 			.catch(this.handleError);
 	}
 
-	// getConsultant(id: string): Promise<Consultant> {
-	// 	const url = `${this.apiUrl}/${id}`;
-	// 	return this.http.get(url)
-	// 		.toPromise()
-	// 		.then(response => response.json() as Consultant)
-	// 		.catch(this.handleError);
-	// }
+	getConsultantFromDB(id: string): Promise<Consultant> {
+		const url = `${this.apiUrl}/${id}`;
+		return this.http.get(url)
+			.toPromise()
+			.then(response => response.json() as Consultant)
+			.catch(this.handleError);
+	}
 
 	update(consultant: Consultant): Promise<Consultant> {
 		const url = `${this.apiUrl}/${consultant.id}`;
@@ -75,10 +75,28 @@ export class ConsultantsService {
 			.catch(this.handleError);
 	}
 
+	private getHits(json: any): any {
+		
+		console.log(json);
+		
+		var total = json.hits.total;
+		var hits = json.hits.hits;
+
+		if (total > 0)
+			return hits.map(this.extractConsultant);
+		else 
+			return [];
+	}
+
 	private extractConsultant(json: any): any {
 		var result = json._source as Consultant;
-		result.id = json._id;
-		return result; 
+		if (result) {
+			result.id = json._id;
+			return result;
+		} else {
+			return new Consultant();
+		}
+		 
 	}
 
 	private handleError(error: any): Promise<any> {

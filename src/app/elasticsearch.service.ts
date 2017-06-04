@@ -32,15 +32,20 @@ export class ElasticSearchService {
         if (value) {
             console.log(value)
             return this._client.search({
-                index: this._index //, q: `title:${value}`
+                index: 'consultants-test'//,q: `title:${value}`
             })
         } else {
             return Promise.resolve({})
         }
     }
 
-    addToIndex(value): any {
-        return this._client.create(value)
+    addToIndex(value:any): any {
+        return this._client.create({
+            index: 'consultants-test',
+            type: 'consultant',
+            id: value.id,
+            body: value.body
+        })
     }
 
     isAvailable(): any {

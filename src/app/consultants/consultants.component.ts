@@ -35,9 +35,9 @@ export class ConsultantsComponent implements OnInit {
 			});
 	}
 
-	gotoDetail(): void {
-		var _id = "592750bf989e47316f66e069";
-		this.router.navigate(['/detail', _id]);
+	gotoDetail(id: string): void {
+		//var _id = "592750bf989e47316f66e069";
+		this.router.navigate(['/detail', id]);
 	}
 
 	getConsultants(): void {

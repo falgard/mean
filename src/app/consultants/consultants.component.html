@@ -35,7 +35,7 @@
 
   <div class="row">
     <h3>Consultants</h3>
-    <div (click)="gotoDetail()" class="card card-block" *ngFor="let consultant of consultants">
+    <div (click)="gotoDetail(consultant.id)" class="card card-block" *ngFor="let consultant of consultants">
       <h4 class="card-title">{{consultant.name}}  {{consultant.age}} {{consultant.role}}</h4>
     </div>
   </div>
