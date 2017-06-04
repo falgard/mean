@@ -1,5 +1,28 @@
 # MeanApp
 
+
+
+--------------------------------
+
+npm install
+
+npm i @types/elasticsearch@0.0.7
+
+* Add this lines to your elasticsearch.yml configuration file (it's not recommended in real app):
+
+```yml
+http.cors.enabled : true 
+http.cors.allow-origin : "*"
+http.cors.allow-methods : OPTIONS, HEAD, GET, POST, PUT, DELETE
+http.cors.allow-headers : X-Requested-With,X-Auth-Token,Content-Type, Content-Length
+```
+
+npm run build
+
+--------------------------------
+
+
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
 
 ## Development server
