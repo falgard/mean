@@ -14,6 +14,7 @@ import { PostsService } from './posts.service';
 import { ConsultantsService } from './consultants.service';
 import { SkillsService } from './skills.service';
 import { ConsultantDetailComponent } from './consultant-detail/consultant-detail.component';
+import { ToolsComponent } from './tools/tools.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ConsultantDetailComponent } from './consultant-detail/consultant-detail
     PostsComponent,
     ConsultantsComponent,
     SkillsComponent,
-    ConsultantDetailComponent
+    ConsultantDetailComponent,
+    ToolsComponent
   ],
   imports: [
     BrowserModule,
