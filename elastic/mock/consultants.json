@@ -1,4 +1,4 @@
-PUT consultants-test/consult/592750bf989e47316f66e069
+PUT consultants-test/consultant/592750bf989e47316f66e069
 {
     "name" : "mike",
     "age" : 30,

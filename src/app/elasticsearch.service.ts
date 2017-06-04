@@ -7,7 +7,7 @@ export class ElasticSearchService {
 
   	private _client: Client;
   	private _index: 'consultants-test';
-  	private _type: 'consultant';
+  	private _type: 'consult';
 
     constructor() {
         if (!this._client) this._connect();
@@ -22,8 +22,8 @@ export class ElasticSearchService {
 
     get(id: string): any {
 		return this._client.get({
-		  index: this._index,
-		  type: this._type,
+		  index: 'consultants-test',
+		  type: 'consultant',
 		  id: id
 		})
     }
